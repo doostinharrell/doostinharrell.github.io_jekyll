@@ -1,9 +1,9 @@
 var gulp         = require('gulp');
 var browserSync  = require('browser-sync').create();
-var reload       = browserSync.reload;
 var plugins      = require('gulp-load-plugins')();
 
 var jsPaths = [
+  'bower_components/jquery/dist/jquery.min.js',
   'bower_components/velocity/velocity.min.js',
   'bower_components/velocity/velocity.ui.min.js',
   'bower_components/foundation-sites/dist/foundation.js',
@@ -12,6 +12,7 @@ var jsPaths = [
 ];
 
 var sassPaths = [
+  'bower_components/font-awesome/scss',
   'bower_components/foundation-sites/scss'
 ];
 
@@ -22,7 +23,7 @@ gulp.task('js', function() {
     .pipe(plugins.uglify())
     .pipe(plugins.concat('app.min.js'))
     .pipe(plugins.sourcemaps.write('/'))
-    .pipe(gulp.dest('dist/js'));
+    .pipe(gulp.dest('src/html/js'));
 });
 
 // SASS Task
@@ -38,22 +39,22 @@ gulp.task('sass', function() {
     }))
     .pipe(plugins.cleanCss())
     .pipe(plugins.sourcemaps.write('/'))
-    .pipe(gulp.dest('dist/css'))
+    .pipe(gulp.dest('src/html/css'))
 
     // Reload browser
-    .pipe(reload({stream: true}));
+    .pipe(browserSync.reload({stream: true}));
 });
 
-// JEKYLL Tasks
+// JEKYLL Task
 gulp.task('jekyll-build', plugins.shell.task([
   'jekyll build',
-  'rsync -rv ./dist/html/ ../www --exclude=.sass-cache'
+  'rsync -r ./dist/html/ ../www --exclude=.sass-cache'
 ]));
 
-// Browser Sync Task
+// Browser Sync Initialize Task
 gulp.task('browser-sync', function() {
   browserSync.init({
-    proxy: "dustinharrell.boi",
+    proxy: "dustinharrell.boi/index.html",
     port: 3000,
     ui: {
       port: 3001,
@@ -66,7 +67,9 @@ gulp.task('browser-sync', function() {
 
 // Watch Task - Watches key files for changes.
 gulp.task('watch', function(){
-  gulp.watch('src/**/*', ['js', 'sass', 'jekyll-build']);
+  gulp.watch(['src/js/**/*', 'src/scss/**/*'], ['js', 'sass']);
+  gulp.watch(['src/html/**/*', '_config.yml'], ['jekyll-build']);
+  gulp.watch('dist/html/**/*').on('change', browserSync.reload);
 });
 
 // Default Task - Run browser-sync and watch for changes.
