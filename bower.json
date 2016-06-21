@@ -1,0 +1,26 @@
+{
+  "name": "doostinharrell.github.io",
+  "description": "My website",
+  "main": "gulpfile.js",
+  "authors": [
+    "Dustin Harrell <doostiharrell@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/doostinharrell/doostinharrell.github.io",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "private": true,
+  "devDependencies": {
+    "foundation-sites": "~6.1.0",
+    "motion-ui": "~1.1.0",
+    "velocity": "^1.2.3",
+    "font-awesome": "fontawesome#^4.5.0",
+    "smoothscroll-for-websites": "^1.4.4"
+  }
+}

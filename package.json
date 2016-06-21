@@ -1,0 +1,35 @@
+{
+  "name": "doostinharrell.github.io",
+  "version": "1.0.0",
+  "description": "My website.",
+  "main": "gulpfile.js",
+  "devDependencies": {
+    "browser-sync": "^2.11.1",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-clean-css": "^2.0.10",
+    "gulp-concat": "^2.6.0",
+    "gulp-jekyll": "0.0.0",
+    "gulp-load-plugins": "^1.1.0",
+    "gulp-sass": "^2.1.0",
+    "gulp-sass-glob": "0.0.8",
+    "gulp-shell": "^0.5.2",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.5.2"
+  },
+  "scripts": {
+    "start": "gulp",
+    "build": "gulp sass"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/doostinharrell/doostinharrell.github.io"
+  },
+  "bugs": {
+    "url": "https://github.com/doostinharrell/doostinharrell.github.io/issues",
+    "email": "doostiharrell@gmail.com"
+  },
+  "author": "Dustin Harrell <doostiharrell@gmail.com>",
+  "license": "MIT",
+  "private": true
+}
